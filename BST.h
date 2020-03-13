@@ -9,16 +9,16 @@ using namespace std;
 template<class T>
 struct Node
 {
-	Node(T d = nullptr, Node* right = nullptr, Node* left = nullptr)
+	Node(T d = nullptr, Node* r = nullptr, Node* l = nullptr)
 	{
-		d = d;
-		left = left;
-		right = right;	
+		data = d;
+		left = l;
+		right = r;	
 	}
 
 	T data;
-	Node<T>* left;
-	Node<T>* right;
+	Node<T>* left = nullptr;
+	Node<T>* right = nullptr;
 };
 
 template<class T>
@@ -78,7 +78,7 @@ void BST<T>::insertHelper(T& value, Node<T>*& node)
 	}
 	else if (node->data == value)
 	{
-		node->data.addMovieStock(value.getMovieStock());
+		node->data.addToStock(value.getStock());
 	}
 	else if (node->data > value)
 	{

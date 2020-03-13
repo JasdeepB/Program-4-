@@ -14,7 +14,7 @@ public:
 	int getReleaseMonth() const;
 
 
-	friend ostream& operator << (ostream& output, Classic* movie);
+	friend ostream& operator << (ostream& output, Classic& movie);
 
 	bool operator ==(Classic& otherMovie) const;
 	bool operator !=(Classic& otherMovie) const;

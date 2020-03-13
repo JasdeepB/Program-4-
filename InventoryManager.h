@@ -21,6 +21,7 @@ public:
 	bool buildMovies(ifstream& moviesData);
 	bool buildCustomers(ifstream& customersData);
 	bool processTransaction(ifstream& commandsFile);
+	void showAllInventory();
 
 private:
 	BST<Funny> funnyMoviesBST;

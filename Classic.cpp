@@ -19,7 +19,7 @@ Classic::Classic(const char type, int stock, const string director, const string
 	this->director = director;
 	this->title = title;
 	this->majorActorFirstName = majorActorFirstName;
-	this->majorActorFirstName = majorActorLastName;
+	this->majorActorLastName = majorActorLastName;
 	this->releaseYear = releaseYear;
 	this->releaseMonth = releaseMonth;
 }
@@ -137,10 +137,13 @@ bool Classic::operator<(Classic& otherMovie) const
 	}
 }
 
-ostream& operator<<(ostream& output, Classic* movie)
+ostream& operator<<(ostream& output, Classic& movie)
 {
-	output << "Release date: " << movie->releaseMonth << " - " << movie->releaseYear << "Major Actor: " << movie->majorActorFirstName << " " << movie->majorActorLastName
-		<< "\n" << "Title: " << movie->title << " Director: " << movie->director << " Type: " << movie->type
-		<< "\n" << "Stock ----> " << movie->stock << endl;
+	output << "\nRelease date: " << movie.releaseMonth << " - " << movie.releaseYear
+		<< "\nMajor Actor: " << movie.majorActorFirstName << " " << movie.majorActorLastName
+		<< "\n" << "Title: " << movie.title
+		<< "\nDirector: " << movie.director 
+		<< "\nType: " << movie.type
+		<< "\n" << "Stock ----> " << movie.stock << endl;
 	return output;
 }
