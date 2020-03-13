@@ -4,7 +4,11 @@
 #include <fstream>
 #include <string>
 #include "Movie.h"
+#include "Funny.h"
+#include "Drama.h"
+#include "Classic.h"
 #include "Customer.h"
+#include "BST.h"
 
 using namespace std;
 
@@ -19,7 +23,9 @@ public:
 	bool processTransaction(ifstream& commandsFile);
 
 private:
-	//Trees
+	BST<Funny> funnyMoviesBST;
+	BST<Drama> dramaMoviesBST;
+	BST<Classic> classicMoviesBST;
 	//HashTable
 };
 #endif // !InventoryManager_h

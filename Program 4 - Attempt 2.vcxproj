@@ -147,12 +147,18 @@
     <ClCompile Include="Movie.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BST.h" />
     <ClInclude Include="Classic.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Drama.h" />
     <ClInclude Include="Funny.h" />
     <ClInclude Include="InventoryManager.h" />
     <ClInclude Include="Movie.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data4commands.txt" />
+    <Text Include="data4customers.txt" />
+    <Text Include="data4movies.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
