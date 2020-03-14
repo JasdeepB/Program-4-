@@ -29,6 +29,58 @@ bool InventoryManager::buildCustomers(ifstream& customersData)
 	}
 	return b;
 }
+bool InventoryManager::processTransaction(ifstream & commandsFile)
+{
+	char trns, dvd, genre, comma;
+	int id, month, year;
+	string director, title, majorActorF, majorActorL;
+	if (!commandsFile)
+	{
+		cout << "Could not open the command data file!" << endl;
+		return false;
+	}
+	while (commandsFile) {
+		commandsFile >> trns;
+		if (trns == 'B' | trns == 'R') {
+			commandsFile >> id >> dvd >> genre;
+			if (genre == 'F') {
+				getline(commandsFile, title, ',');
+				commandsFile >> year;
+
+			}
+			else if (genre == 'D') {
+				getline(commandsFile, director, ',');
+				getline(commandsFile, title, ',');
+			
+			}
+			else if(genre == 'C') {
+				commandsFile >> month >> year;
+				commandsFile >> majorActorF >> majorActorL;
+			}
+			else {
+				cout << "Invalid Genre Type" << endl;
+			}
+
+		}
+		else if (trns == 'H') {
+			commandsFile >> id;
+			Customer *myCust = customerTable.retrieve(id);
+			if (myCust != nullptr) {
+				myCust->showAllTransactions();
+			}
+			else {
+				cout << "Customer does not exist" << endl;
+			}
+		}
+		else if (trns == 'I') {
+			showAllInventory();
+		}
+		else {
+			cout << trns << " is an invalid command." << endl;
+		}
+	}
+
+}
 bool InventoryManager::buildMovies(ifstream& moviesData)
 {
 	char type, comma;
