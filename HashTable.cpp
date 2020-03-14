@@ -2,6 +2,7 @@
 
 
 HashTable::HashTable() {
+	table = new Node *[DEFAULT_TABLE_SIZE];
 	for (int i = 0; i < DEFAULT_TABLE_SIZE; i++) {
 		table[i] = nullptr;
 	}
@@ -72,11 +73,14 @@ bool HashTable::contains(int key)
 	return false;
 }
 void HashTable::clear(){
+
 	for(int i = 0; i <DEFAULT_TABLE_SIZE; i++){
 		Node *curr = table[i];
+	
 		while(curr != nullptr){
 			Node *temp = curr;
 			curr = curr->next;
+			delete temp->data;
 			delete temp;
 			temp = nullptr;
 		}

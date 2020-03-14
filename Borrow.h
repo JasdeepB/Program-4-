@@ -15,8 +15,7 @@ public:
 		const string majorActorLastName = "",
 		const int releaseMonth = 0);
 
-	friend ostream& operator <<(ostream& output, Borrow& b);
-	virtual ostream& display(ostream&output);
+	virtual ostream& display(ostream &output);
 private:
 	string transactionType = "Borrow";
 };

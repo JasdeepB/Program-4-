@@ -24,7 +24,7 @@ private:
 		Node *next = nullptr;
 	};
 	static const int DEFAULT_TABLE_SIZE = 128;
-	Node *table[DEFAULT_TABLE_SIZE];
+	Node **table;
 
 };
 #endif HashTable_HashTable_H
