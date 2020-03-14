@@ -14,8 +14,8 @@ public:
 	char getType() const;
 	int getCustomerID() const;
 
-	friend ostream& operator <<(ostream& output, Transaction& t);
-	virtual ostream& display(ostream& output);
+	//friend ostream& operator <<(ostream& output, Transaction& t);
+	//virtual ostream& display(ostream& output);
 
 protected: 
 	char type;

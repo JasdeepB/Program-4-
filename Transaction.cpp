@@ -11,10 +11,10 @@ Transaction::Transaction()
 	this->releaseYear = 0;
 	this->customerID = 0;
 }
-ostream& Transaction::operator <<(ostream& output, Transaction& t)
-{
-	return t.display(output);
-}
+//ostream& Transaction::operator <<(ostream& output, Transaction& t)
+//{
+//	return t.display(output);
+//}
 Transaction::~Transaction()
 {
 }
