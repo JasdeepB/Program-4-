@@ -12,5 +12,7 @@ int main()
 
 	InventoryManager im;
 	im.buildMovies(movies);
+	im.buildCustomers(customers);
+	im.processTransaction(commands);
 	im.showAllInventory();
 }
