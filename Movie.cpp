@@ -69,7 +69,7 @@ bool Movie::Return()
 
 bool Movie::Borrow()
 {
-	if (!this->stock <= 0)
+	if (!(this->stock <= 0))
 	{
 		this->stock--;
 		return true;

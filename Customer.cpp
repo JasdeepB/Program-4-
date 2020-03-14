@@ -18,31 +18,46 @@ Customer::~Customer()
 {
 }
 
-int& Customer::getCustomerID()
+int Customer::getCustomerID()
 {
-	int& ptr = this->customerID;
-	return ptr;
+	return this->customerID;
 }
 
-void Customer::addTransaction(string transactionInfo)
+void Customer::addTransaction(Transaction t)
 {
-	this->transactions.push_back(transactionInfo);
+	this->transactions.push_back(t);
 }
 
 void Customer::showAllTransactions()
 {
-	if (this->transactions.empty())
+	if (!this->transactions.empty())
 	{
-		cout << "There is no transaction history for this customer" << endl;
-	}
-	else
-	{
-		for (auto it = this->transactions.end() - 1; it != this->transactions.begin() - 1; it--)
+		for (int i = 0; i < (this->transactions.size()); i++)
 		{
-			cout << *it << endl;
+			cout << transactions[i] << endl;
 		}
 	}
 }
+
+//void Customer::addTransaction(Transaction t){
+//
+//	transactions.push_back(t);
+//
+//}
+//void Customer::showAllTransactions()
+//{
+//	if (this->transactions.empty())
+//	{
+//		cout << "There is no transaction history for this customer" << endl;
+//	}
+//	else
+//	{
+//		for (auto it = this->transactions.end() - 1; it != this->transactions.begin() - 1; it--)
+//		{
+//			cout << *it << endl;
+//		}
+//	}
+//}
 
 bool Customer::operator==(const Customer& otherCustomer) const
 {

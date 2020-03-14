@@ -9,6 +9,8 @@
 #include "Classic.h"
 #include "Customer.h"
 #include "BST.h"
+#include "HashTable.h"
+#include "Transaction.h"
 
 using namespace std;
 
@@ -27,6 +29,6 @@ private:
 	BST<Funny> funnyMoviesBST;
 	BST<Drama> dramaMoviesBST;
 	BST<Classic> classicMoviesBST;
-	//HashTable
+	HashTable customerTable;
 };
 #endif // !InventoryManager_h

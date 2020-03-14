@@ -10,7 +10,25 @@ InventoryManager::InventoryManager()
 InventoryManager::~InventoryManager()
 {
 }
+bool InventoryManager::buildCustomers(ifstream& customersData)
+{	
+	bool b = false;
+	int idNumber;
+	string first, last;
+	if (!customersData)
+	{
+		cout << "Could not open the customer data file!" << endl;
+		return false;
+	}
+	while(customersData){
 
+		customersData >> idNumber >> last >> first;
+
+		Customer *newCust = new Customer(idNumber, first, last);
+		b = customerTable.insert(idNumber, newCust);
+	}
+	return b;
+}
 bool InventoryManager::buildMovies(ifstream& moviesData)
 {
 	char type, comma;
@@ -73,7 +91,7 @@ bool InventoryManager::buildMovies(ifstream& moviesData)
 
 void InventoryManager::showAllInventory()
 {
-	cout << "===================== CURRENT INVENTORY =====================\n";
+	cout << "\n===================== CURRENT INVENTORY =====================\n\n";
 	cout << "===================== All Comedy Movies =====================\n";
 	funnyMoviesBST.display();
 	cout << "=====================  All Drama Movies  ====================\n";
