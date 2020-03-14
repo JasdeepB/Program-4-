@@ -30,7 +30,7 @@ private:
 	int customerID; 
 	string firstName;
 	string lastName; 
-	//vector<Transaction> transactions;
+	vector<Transaction> transactions;
 	friend class HashTable;
 	//Return test;
 	//Borrow test2;

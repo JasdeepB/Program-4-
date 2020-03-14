@@ -23,21 +23,21 @@ int Customer::getCustomerID()
 	return this->customerID;
 }
 
-//void Customer::addTransaction(Transaction t)
-//{
-//	this->transactions.push_back(t);
-//}
-//
-//void Customer::showAllTransactions()
-//{
-//	if (!this->transactions.empty())
-//	{
-//		for (int i = 0; i < (this->transactions.size()); i++)
-//		{
-//			cout << transactions[i] << endl;
-//		}
-//	}
-//}
+void Customer::addTransaction(Transaction t)
+{
+	this->transactions.push_back(t);
+}
+
+void Customer::showAllTransactions()
+{
+	if (!this->transactions.empty())
+	{
+		for (int i = 0; i < (this->transactions.size()); i++)
+		{
+			cout << transactions[i] << endl;
+		}
+	}
+}
 
 bool Customer::operator==(const Customer& otherCustomer) const
 {
