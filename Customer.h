@@ -41,6 +41,6 @@ private:
 	string firstName;
 	string lastName; 
 	vector<Transaction> transactions;
-	
+	friend class HashTable;
 };
 #endif // !Customer_h

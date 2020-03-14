@@ -62,11 +62,16 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 		cout << "Could not open the command data file!" << endl;
 		return false;
 	}
-	while (commandsFile) {
+	while (commandsFile)
+	{
 		commandsFile >> trns;
-		if (trns == 'B') {
+
+		if (trns == 'B') 
+		{
 			commandsFile >> id >> dvd >> genre;
-			if (genre == 'F' || genre == 'D' || genre == 'C') {
+
+			if (genre == 'F' || genre == 'D' || genre == 'C') 
+			{
 				if (genre == 'F') {
 					getline(commandsFile, title, ',');
 					commandsFile >> year;
@@ -75,7 +80,8 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					funnyMoviesBST.retrieve(title, year, f);
 					f->Borrow();
 				}
-				else if (genre == 'D') {
+				else if (genre == 'D')
+				{
 					getline(commandsFile, director, ',');
 					getline(commandsFile, title, ',');
 					t = Borrow(id, genre, director, title);
@@ -83,7 +89,8 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					dramaMoviesBST.retrieve(director, title, d);
 					d->Borrow();
 				}
-				else if (genre == 'C') {
+				else if (genre == 'C')
+				{
 					commandsFile >> month >> year;
 					commandsFile >> majorActorF >> majorActorL;
 					t = Borrow(id, genre, month, year, majorActorF, majorActorL);
@@ -92,7 +99,8 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					c->Borrow();
 
 				}
-				else {
+				else
+				{
 					cout << "Invalid Genre Type" << endl;
 				}
 				Customer *cust = nullptr;
@@ -100,15 +108,20 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 				if (cust != nullptr) {
 					cust->addTransaction(t);
 				}
-				else {
+				else
+				{
 					cout << "Customer does not exist" << endl;
 				}
 			}
 		}
-		else if(trns == 'R') {
+		else if(trns == 'R') 
+		{
 			commandsFile >> id >> dvd >> genre;
-			if (genre == 'F' || genre == 'D' || genre == 'C') {
-				if (genre == 'F') {
+
+			if (genre == 'F' || genre == 'D' || genre == 'C')
+			{
+				if (genre == 'F')
+				{
 					getline(commandsFile, title, ',');
 					commandsFile >> year;
 					t = Return(id, genre, title, year);
@@ -116,7 +129,8 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					funnyMoviesBST.retrieve(title, year, f);
 					f->Return();
 				}
-				else if (genre == 'D') {
+				else if (genre == 'D')
+				{
 					getline(commandsFile, director, ',');
 					getline(commandsFile, title, ',');
 					t = Return(id, genre, director, title);
@@ -124,7 +138,8 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					dramaMoviesBST.retrieve(director, title, d);
 					d->Return();
 				}
-				else if (genre == 'C') {
+				else if (genre == 'C') 
+				{
 					commandsFile >> month >> year;
 					commandsFile >> majorActorF >> majorActorL;
 					t = Return(id, genre, month, year, majorActorF, majorActorL);
@@ -133,8 +148,10 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					c->Return();
 
 				}
+
 				Customer *cust = nullptr;
 				customerTable.retrieve(id, cust);
+
 				if (cust != nullptr) {
 					cust->addTransaction(t);
 				}
@@ -142,25 +159,34 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					cout << "Customer does not exist" << endl;
 				}
 			}
-			else {
+			else
+			{
 				cout << "Invalid Genre Type" << endl;
 			}
 		}
-		else if (trns == 'H') {
+		else if (trns == 'H')
+		{
 			commandsFile >> id;
 			Customer *myCust;
 			customerTable.retrieve(id, myCust);
-			if (myCust != nullptr) {
+
+			if (myCust != nullptr) 
+			{
 				myCust->showAllTransactions();
 			}
-			else {
+			else
+			{
 				cout << "Customer does not exist" << endl;
 			}
 		}
-		else if (trns == 'I') {
+		else if (trns == 'I')
+		{
 			showAllInventory();
 		}
-		else {
+		else
+		{
+			string s;
+			getline(commandsFile, s);
 			cout << trns << " is an invalid command." << endl;
 		}
 	}

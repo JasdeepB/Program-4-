@@ -28,8 +28,9 @@ private:
 		Customer data;
 		Node *next = nullptr;
 	};
-	static const int DEFAULT_TABLE_SIZE = 127;
-	Node **table;
 
+	int size;
+	int capacity;
+	Node **table;
 };
-#endif HashTable_HashTable_H
+#endif
