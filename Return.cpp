@@ -12,17 +12,42 @@ Return::Return()
 	this->customerID = 0;
 }
 
-Return::Return(const int customerID, char type, const string title, const string director, int releaseYear, const string majorActorFirstName, const string majorActorLastName, const int releaseMonth)
+Return::Return(const int customerID, char type, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName)
 {
-	this->customerID = customerID;
 	this->type = type;
-	this->title = title;
-	this->director = director;
-	this->releaseYear = releaseYear;
+	this->title = "";
+	this->director = "";
 	this->majorActorFirstName = majorActorFirstName;
 	this->majorActorLastName = majorActorLastName;
 	this->releaseMonth = releaseMonth;
+	this->releaseYear = releaseMonth;
+	this->customerID = customerID;
 }
+
+Return::Return(const int customerID, char type, const string title, int releaseYear)
+{
+	this->type = type;
+	this->title = title;
+	this->director = "";
+	this->majorActorFirstName = "";
+	this->majorActorLastName = "";
+	this->releaseMonth = 0;
+	this->releaseYear = releaseYear;
+	this->customerID = customerID;
+}
+
+Return::Return(const int customerID, char type, const string director, string title)
+{
+	this->type = type;
+	this->title = title;
+	this->director = director;
+	this->majorActorFirstName = "";
+	this->majorActorLastName = "";
+	this->releaseMonth = 0;
+	this->releaseYear = 0;
+	this->customerID = customerID;
+}
+
 
 ostream& Return::display(ostream& output)
  {

@@ -34,6 +34,8 @@ bool InventoryManager::processTransaction(ifstream & commandsFile)
 	char trns, dvd, genre, comma;
 	int id, month, year;
 	string director, title, majorActorF, majorActorL;
+	Transaction t;
+	
 	if (!commandsFile)
 	{
 		cout << "Could not open the command data file!" << endl;
@@ -41,26 +43,75 @@ bool InventoryManager::processTransaction(ifstream & commandsFile)
 	}
 	while (commandsFile) {
 		commandsFile >> trns;
-		if (trns == 'B' | trns == 'R') {
+		if (trns == 'B') {
 			commandsFile >> id >> dvd >> genre;
-			if (genre == 'F') {
-				getline(commandsFile, title, ',');
-				commandsFile >> year;
+			if (genre == 'F' | genre == 'D' | genre == 'C') {
+				if (genre == 'F') {
+					getline(commandsFile, title, ',');
+					commandsFile >> year;
+					t = Borrow(id, genre, title, year);
+					Funny *f = nullptr;
+					funnyMoviesBST.retrieve(title, year, f);
+					f->Borrow();
+				}
+				else if (genre == 'D') {
+					getline(commandsFile, director, ',');
+					getline(commandsFile, title, ',');
+					t = Borrow(id, genre, director, title);
+					Drama *d = nullptr;
+					dramaMoviesBST.retrieve(director, title, d);
+					d->Borrow();
+				}
+				else if (genre == 'C') {
+					commandsFile >> month >> year;
+					commandsFile >> majorActorF >> majorActorL;
+					t = Borrow(id, genre, month, year, majorActorF, majorActorL);
+					Classic *c = nullptr;
+					classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
+					c->Borrow();
 
+				}
+				else {
+					cout << "Invalid Genre Type" << endl;
+				}
+				Customer *cust = customerTable.retrieve(id);
+				cust->addTransaction(t);
 			}
-			else if (genre == 'D') {
-				getline(commandsFile, director, ',');
-				getline(commandsFile, title, ',');
-			
-			}
-			else if(genre == 'C') {
-				commandsFile >> month >> year;
-				commandsFile >> majorActorF >> majorActorL;
+		}
+		else if(trns == 'R') {
+			commandsFile >> id >> dvd >> genre;
+			if (genre == 'F' | genre == 'D' | genre == 'C') {
+				if (genre == 'F') {
+					getline(commandsFile, title, ',');
+					commandsFile >> year;
+					t = Return(id, genre, title, year);
+					Funny *f = nullptr;
+					funnyMoviesBST.retrieve(title, year, f);
+					f->Return();
+				}
+				else if (genre == 'D') {
+					getline(commandsFile, director, ',');
+					getline(commandsFile, title, ',');
+					t = Return(id, genre, director, title);
+					Drama *d = nullptr;
+					dramaMoviesBST.retrieve(director, title, d);
+					d->Return();
+				}
+				else if (genre == 'C') {
+					commandsFile >> month >> year;
+					commandsFile >> majorActorF >> majorActorL;
+					t = Return(id, genre, month, year, majorActorF, majorActorL);
+					Classic *c = nullptr;
+					classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
+					c->Return();
+
+				}
+				Customer *cust = customerTable.retrieve(id);
+				cust->addTransaction(t);
 			}
 			else {
 				cout << "Invalid Genre Type" << endl;
 			}
-
 		}
 		else if (trns == 'H') {
 			commandsFile >> id;

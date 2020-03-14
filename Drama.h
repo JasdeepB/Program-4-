@@ -10,7 +10,6 @@ public:
 	virtual ~Drama();
 
 	friend ostream& operator <<(ostream& output, Drama& Movie);
-
 	bool operator ==(Drama& otherMovie) const;
 	bool operator !=(Drama& otherMovie) const;
 	bool operator >(Drama& otherMovie) const;

@@ -103,7 +103,7 @@ bool BST<T>::retrieveHelper(const string director, const string movieName, T*& h
 	{
 		return false;
 	}
-	else if ((node->data.getDirectorName() == director) && (node->data.getMovieName() == movieName))
+	else if ((node->data.getDirector() == director) && (node->data.getTitle() == movieName))
 	{
 		//Thank goodness I found this https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/
 		holder = reinterpret_cast<T*>(node);
@@ -129,7 +129,7 @@ bool BST<T>::retrieveHelper(const string movieTitle, const int releaseYear, T*& 
 	{
 		return false;
 	}
-	else if ((node->data.getMovieName() == movieTitle) && (node->data.getReleaseYear() == releaseYear))
+	else if ((node->data.getTitle() == movieTitle) && (node->data.getReleaseYear() == releaseYear))
 	{
 		holder = reinterpret_cast<T*>(node);
 		return true;
@@ -160,7 +160,7 @@ bool BST<T>::retrieveHelper(const string maFname, const string maLname, const in
 	{
 		return false;
 	}
-	else if ((node->data.getMaFirstName() == maFname) && (node->data.getMaLastName() == maLname) && (node->data.getReleaseYear() == releaseYear) && node->data.getReleaseMonth() == releaseMonth)
+	else if ((node->data.getMajorActorFirstName() == maFname) && (node->data.getMajorActorLastName() == maLname) && (node->data.getReleaseYear() == releaseYear) && node->data.getReleaseMonth() == releaseMonth)
 	{
 		holder = reinterpret_cast<T*>(node);
 		return true;
