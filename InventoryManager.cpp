@@ -1,15 +1,27 @@
 #include "InventoryManager.h"
-
+//constructor
 InventoryManager::InventoryManager()
 {
 	this->funnyMoviesBST;
 	this->dramaMoviesBST;
 	this->classicMoviesBST;
+	this->customerTable;
 }
+//end constructor
 
+//default constructor
 InventoryManager::~InventoryManager()
 {
 }
+//end constructor
+
+// ------------------------------------buildCustomers---------------------------------------
+// Description
+// buildCustomers: Creates customer objects and populates customer hashtable with them
+// preconditions: empty hash table, and valid filestream
+// postconditions: populated hashtables, filestream eof
+//
+// -----------------------------------------------------------------------------
 bool InventoryManager::buildCustomers(ifstream& customersData)
 {	
 	bool b = false;
@@ -29,7 +41,16 @@ bool InventoryManager::buildCustomers(ifstream& customersData)
 	}
 	return b;
 }
-bool InventoryManager::processTransaction(ifstream & commandsFile)
+//end buildCustomers
+
+// ------------------------------------processTransaction---------------------------------------
+// Description
+// processTransactions: runs through the transactions data file and updates inventory and customer
+// preconditions: A valid input filestream object
+// postconditions: filestream is eof and inventory in BSTs and Hashtables have changed to reflect the commands
+//
+// -----------------------------------------------------------------------------
+bool InventoryManager::processTransaction(ifstream& commandsFile)
 {
 	char trns, dvd, genre, comma;
 	int id, month, year;
@@ -45,7 +66,7 @@ bool InventoryManager::processTransaction(ifstream & commandsFile)
 		commandsFile >> trns;
 		if (trns == 'B') {
 			commandsFile >> id >> dvd >> genre;
-			if (genre == 'F' | genre == 'D' | genre == 'C') {
+			if (genre == 'F' || genre == 'D' || genre == 'C') {
 				if (genre == 'F') {
 					getline(commandsFile, title, ',');
 					commandsFile >> year;
@@ -80,7 +101,7 @@ bool InventoryManager::processTransaction(ifstream & commandsFile)
 		}
 		else if(trns == 'R') {
 			commandsFile >> id >> dvd >> genre;
-			if (genre == 'F' | genre == 'D' | genre == 'C') {
+			if (genre == 'F' || genre == 'D' || genre == 'C') {
 				if (genre == 'F') {
 					getline(commandsFile, title, ',');
 					commandsFile >> year;
@@ -132,6 +153,15 @@ bool InventoryManager::processTransaction(ifstream & commandsFile)
 	}
 
 }
+//end processTransactions
+
+// ------------------------------------buildMovies---------------------------------------
+// Description
+// buildMovies: creates movie objects and populates BST 
+// preconditions: A valid input filestream object, and an empty BST
+// postconditions: filestream is eof and BSTs populated with movies from filestream
+//
+// -----------------------------------------------------------------------------
 bool InventoryManager::buildMovies(ifstream& moviesData)
 {
 	char type, comma;
@@ -191,7 +221,16 @@ bool InventoryManager::buildMovies(ifstream& moviesData)
 	}
 	return true;
 }
+//end buildMovies
 
+
+// ------------------------------------showAllInventory---------------------------------------
+// Description
+// showAllInventory: prints out the contents of the movie BSTs
+// preconditions: Populated BSTs
+// postconditions: none
+//
+// -----------------------------------------------------------------------------
 void InventoryManager::showAllInventory()
 {
 	cout << "\n===================== CURRENT INVENTORY =====================\n\n";
@@ -203,3 +242,4 @@ void InventoryManager::showAllInventory()
 	classicMoviesBST.display();
 	cout << "==================   END OF ALL INVENTORY   =================";
 }
+//end showAllInventory

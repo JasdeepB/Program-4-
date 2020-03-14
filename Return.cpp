@@ -20,7 +20,7 @@ Return::Return(const int customerID, char type, const int releaseMonth, const in
 	this->majorActorFirstName = majorActorFirstName;
 	this->majorActorLastName = majorActorLastName;
 	this->releaseMonth = releaseMonth;
-	this->releaseYear = releaseMonth;
+	this->releaseYear = releaseYear;
 	this->customerID = customerID;
 }
 

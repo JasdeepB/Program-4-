@@ -2,8 +2,8 @@
 
 
 HashTable::HashTable() {
-	table = new Node *[DEFAULT_TABLE_SIZE];
-	for (int i = 0; i < DEFAULT_TABLE_SIZE; i++) {
+	table = new Node *[DEFAULT_TABLE_SIZE+1];
+	for (int i = 0; i < DEFAULT_TABLE_SIZE+1; i++) {
 		table[i] = nullptr;
 	}
 }

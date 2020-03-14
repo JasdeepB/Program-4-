@@ -23,7 +23,7 @@ private:
 		Customer *data;
 		Node *next = nullptr;
 	};
-	static const int DEFAULT_TABLE_SIZE = 128;
+	static const int DEFAULT_TABLE_SIZE = 127;
 	Node **table;
 
 };

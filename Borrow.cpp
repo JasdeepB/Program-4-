@@ -26,7 +26,7 @@ Borrow::Borrow(const int customerID, const char type, const int releaseMonth, co
 
 Borrow::Borrow(const int customerID, char type, const string title, int releaseYear)
 {
-	this->type = 0;
+	this->type = type;
 	this->title = title;
 	this->director = "";
 	this->majorActorFirstName = "";

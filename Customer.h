@@ -1,3 +1,13 @@
+// ------------------------------------------------ Customer.h -------------------------------------------------------
+// Jasdeep Brar, Cameron Ufland CSS343 C
+// Creation Date: March 1, 2020
+// Date of Last Modification: March 14, 2020
+// --------------------------------------------------------------------------------------------------------------------
+// This is the header file for the customer class. it uses a vector to record the transaction of a customer.
+// --------------------------------------------------------------------------------------------------------------------
+//The requirements for this assignment were specified by Wooyoung Kim via class
+// and canvas.
+// --------------------------------------------------------------------------------------------------------------------
 #ifndef Customer_h
 #define Customer_h
 #include <iostream>
@@ -31,8 +41,6 @@ private:
 	string firstName;
 	string lastName; 
 	vector<Transaction> transactions;
-	friend class HashTable;
-	//Return test;
-	//Borrow test2;
+	
 };
 #endif // !Customer_h

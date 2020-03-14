@@ -17,12 +17,17 @@ using namespace std;
 class InventoryManager
 {
 public:
+	//constructor and destructor
 	InventoryManager();
 	~InventoryManager();
 
+	//buildm movie objects, populates movie bst
 	bool buildMovies(ifstream& moviesData);
+	//builds customer objects, populates customer hashtable
 	bool buildCustomers(ifstream& customersData);
+	//process transactions
 	bool processTransaction(ifstream& commandsFile);
+	//shows history of store
 	void showAllInventory();
 
 private:
