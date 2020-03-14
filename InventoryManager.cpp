@@ -37,7 +37,7 @@ bool InventoryManager::buildCustomers(ifstream& customersData)
 		customersData >> idNumber >> last >> first;
 
 		Customer *newCust = new Customer(idNumber, first, last);
-		b = customerTable.insert(idNumber, newCust);
+		b = customerTable.insert(newCust);
 	}
 	return b;
 }
@@ -95,8 +95,14 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 				else {
 					cout << "Invalid Genre Type" << endl;
 				}
-				Customer *cust = customerTable.retrieve(id);
-				cust->addTransaction(t);
+				Customer *cust = nullptr;
+				customerTable.retrieve(id, cust);
+				if (cust != nullptr) {
+					cust->addTransaction(t);
+				}
+				else {
+					cout << "Customer does not exist" << endl;
+				}
 			}
 		}
 		else if(trns == 'R') {
@@ -127,8 +133,14 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					c->Return();
 
 				}
-				Customer *cust = customerTable.retrieve(id);
-				cust->addTransaction(t);
+				Customer *cust = nullptr;
+				customerTable.retrieve(id, cust);
+				if (cust != nullptr) {
+					cust->addTransaction(t);
+				}
+				else {
+					cout << "Customer does not exist" << endl;
+				}
 			}
 			else {
 				cout << "Invalid Genre Type" << endl;
@@ -136,7 +148,8 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 		}
 		else if (trns == 'H') {
 			commandsFile >> id;
-			Customer *myCust = customerTable.retrieve(id);
+			Customer *myCust;
+			customerTable.retrieve(id, myCust);
 			if (myCust != nullptr) {
 				myCust->showAllTransactions();
 			}

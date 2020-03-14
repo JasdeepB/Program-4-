@@ -12,60 +12,52 @@ HashTable::~HashTable()
 {
 	this->clear();
 }
-bool HashTable::insert(int key, Customer *cust)
+bool HashTable::insert(Customer *cust)
 {
-	int index = hash(key);
-	Node *curr = table[index];
-	Node *prev = curr;
-		if (curr == nullptr) {
-			curr = new Node;
-			curr->data = cust;
+	if (!this->contains(cust)) {
+		int index = hash(cust->getCustomerID());
+		Node *curr = new Node( *cust);
+		curr->next = table[index];
+		table[index] = curr;
+		return true;
+	}
+	return false;
+}
+
+bool HashTable::retrieve(int key, Customer *&holder)
+{
+	
+	Node *curr = table[hash(key)];
+	while (curr != nullptr) {
+		if (curr->data.getCustomerID() == key) {
+			holder = &curr->data;
 			return true;
 		}
-
-	if (curr->data == cust) {
-		cout << cust << "already exists";
-		return false;
-	}
-
-	while (curr != nullptr) {
-		if (curr->data == cust) {
-			cout << cust << "already exists";
-			return false;
-		}
-		prev = curr;
 		curr = curr->next;
 	}
-	curr = new Node;
-	prev->next = curr;
-	curr->data = cust;
-	return true;
-}
-
-Customer *HashTable::retrieve(int key)
-{
-	if (table[hash(key)] == nullptr) {
-		return nullptr;
-	}
-	Node *curr = table[hash(key)];
-	while (curr != nullptr) {
-		if (curr->data->getCustomerID() == key) {
-			return curr->data;
-		}
-		curr = curr->next;
-	}
-	return nullptr;
+	holder = nullptr;
+	return false;
 }
 
 
-bool HashTable::contains(int key)
+bool HashTable::contains(Customer *cust)
 {
-	if (table[hash(key)] == nullptr) {
-		return false;
-	}
-	Node *curr = table[hash(key)];
+	int index = hash(cust->getCustomerID());
+	Node *curr = table[index];
 	while (curr != nullptr) {
-		if (curr->data->getCustomerID() == key) {
+		if (curr->data == *cust){
+			return true;
+		}
+		curr = curr->next;
+	}
+	return false;
+}
+
+bool HashTable::contains(int key) {
+	int index = hash(key);
+	Node *curr = table[index];
+	while (curr != nullptr) {
+		if (curr->data.getCustomerID() == key) {
 			return true;
 		}
 		curr = curr->next;
@@ -80,7 +72,6 @@ void HashTable::clear(){
 		while(curr != nullptr){
 			Node *temp = curr;
 			curr = curr->next;
-			delete temp->data;
 			delete temp;
 			temp = nullptr;
 		}

@@ -11,16 +11,21 @@ class HashTable
 public:
 	HashTable();
 	~HashTable();
-	bool insert(int key, Customer *cust);
+	bool insert( Customer *cust);
 	//bool remove(int key);
-	Customer * retrieve(int key);
+	bool retrieve(int key, Customer *&holder);
+	bool contains(Customer *cust);
 	bool contains(int key);
 	void clear();
 
 private:
 	int hash(int key);
 	struct Node {
-		Customer *data;
+		Node(Customer cust, Node *nxt = nullptr) {
+			data = cust;
+			this->next = nxt;
+		}
+		Customer data;
 		Node *next = nullptr;
 	};
 	static const int DEFAULT_TABLE_SIZE = 127;
