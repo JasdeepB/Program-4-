@@ -24,7 +24,7 @@ Return::Return(const int customerID, char type, const string title, const string
 	this->releaseMonth = releaseMonth;
 }
 
-ostream& Return::display(ostream&output)
+ostream& Return::display(ostream& output)
  {
 	if (type == 'C')
 	{
