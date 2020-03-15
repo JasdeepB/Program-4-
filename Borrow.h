@@ -21,7 +21,7 @@ public:
 	Borrow(const int customerID, char type, const string title, int releaseYear);//funny movie
 	Borrow(const int customerID, char type, const string director, string title);//Drama movie
 
-	virtual ostream& display(ostream &output);
+	virtual void display();
 private:
 	string transactionType = "Borrow";
 };

@@ -55,7 +55,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 	char trns, dvd, genre, comma;
 	int id, month, year;
 	string director, title, majorActorF, majorActorL;
-	Transaction t;
+	Transaction *t = nullptr;
 	
 	if (!commandsFile)
 	{
@@ -78,7 +78,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						getline(commandsFile, title, ',');
 						commandsFile >> year;
-						t = Borrow(id, genre, title, year);
+						t = new Borrow(id, genre, title, year);
 						Funny *f = nullptr;
 						if (!funnyMoviesBST.retrieve(title, year, f)) 
 						{
@@ -93,7 +93,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						getline(commandsFile, director, ',');
 						getline(commandsFile, title, ',');
-						t = Borrow(id, genre, director, title);
+						t = new Borrow(id, genre, director, title);
 						Drama *d = nullptr;
 						//dramaMoviesBST.retrieve(director, title, d);
 						if (!dramaMoviesBST.retrieve(director, title, d)) 
@@ -109,7 +109,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						commandsFile >> month >> year;
 						commandsFile >> majorActorF >> majorActorL;
-						t = Borrow(id, genre, month, year, majorActorF, majorActorL);
+						t = new Borrow(id, genre, month, year, majorActorF, majorActorL);
 						Classic *c = nullptr;
 						//classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
 						//c->Borrow();
@@ -152,7 +152,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						getline(commandsFile, title, ',');
 						commandsFile >> year;
-						t = Return(id, genre, title, year);
+						t = new Return(id, genre, title, year);
 						Funny *f = nullptr;
 						//funnyMoviesBST.retrieve(title, year, f);
 						//f->Return();
@@ -168,7 +168,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						getline(commandsFile, director, ',');
 						getline(commandsFile, title, ',');
-						t = Return(id, genre, director, title);
+						t = new Return(id, genre, director, title);
 						Drama *d = nullptr;
 						//dramaMoviesBST.retrieve(director, title, d);
 						//d->Return();
@@ -184,7 +184,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						commandsFile >> month >> year;
 						commandsFile >> majorActorF >> majorActorL;
-						t = Return(id, genre, month, year, majorActorF, majorActorL);
+						t = new Return(id, genre, month, year, majorActorF, majorActorL);
 						Classic *c = nullptr;
 						//classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
 						//c->Return();

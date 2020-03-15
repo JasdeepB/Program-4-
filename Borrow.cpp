@@ -50,17 +50,17 @@ Borrow::Borrow(const int customerID, char type, const string director, string ti
 
 
 
-ostream& Borrow::display(ostream&output) 
+void Borrow::display() 
 {
 	if (type == 'C')
 	{
-		output << "Customer: " << customerID
+		cout << "Customer: " << customerID
 			<< "\n" << "Borrowed: " << releaseMonth<< " "<< releaseYear<< " " << majorActorFirstName << " " << majorActorLastName << endl;
 	}
 	else
 	{
-		output << "Customer: " << customerID
+		cout << "Customer: " << customerID
 			<< "\n" << "Borrowed: " << title << endl;
 	}
-	return output;
+	
 }

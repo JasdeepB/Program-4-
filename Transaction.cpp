@@ -13,7 +13,7 @@ Transaction::Transaction()
 }
 ostream& operator <<(ostream& output, Transaction& t)
 {
-	return t.display(output);
+	return output;
 }
 Transaction::~Transaction()
 {
@@ -24,19 +24,18 @@ int Transaction::getCustomerID() const
 	return this->customerID;
 }
 
-ostream & Transaction::display(ostream & output)
+void Transaction::display()
 {
 	if (type == 'C')
 	{
-		output << "Customer: " << customerID
-			<< "\n" << "Borrowed: " << title << " with " << majorActorFirstName << " " << majorActorLastName << endl;
+		cout << "Customer: " << customerID
+			<< "\n" << "Borrowed: " << releaseMonth << " " << releaseYear << " " << majorActorFirstName << " " << majorActorLastName << endl;
 	}
 	else
 	{
-		output << "Customer: " << customerID
+		cout << "Customer: " << customerID
 			<< "\n" << "Borrowed: " << title << endl;
 	}
-	return output;
 }
 
 char Transaction::getType() const

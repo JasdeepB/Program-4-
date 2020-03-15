@@ -23,18 +23,26 @@ int Customer::getCustomerID()
 	return this->customerID;
 }
 
-void Customer::addTransaction(Transaction t)
+void Customer::addTransaction(Transaction *t)
 {
-	this->transactions.push_back(t);
+	transactions.push_back(t);
 }
 
 void Customer::showAllTransactions()
 {
 	if (!this->transactions.empty())
 	{
-		for (int i = 0; i < (this->transactions.size()); i++)
+		for (int i = 0; i < this->transactions.size(); i++)
 		{
-			cout << transactions[i] << endl;
+			if (transactions[i]->getType() == 'R') {
+				transactions[i]->display();
+				
+			}
+			else {
+				transactions[i]->display();
+				
+			}
+			
 		}
 	}
 }

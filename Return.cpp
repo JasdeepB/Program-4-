@@ -49,18 +49,16 @@ Return::Return(const int customerID, char type, const string director, string ti
 }
 
 
-ostream& Return::display(ostream& output)
+void Return::display()
  {
 	if (type == 'C')
 	{
-		output << "Customer: " << customerID
+		cout << "Customer: " << customerID
 			<< "\n" << "Returned: " << title << " with " << majorActorFirstName << " " << majorActorLastName << endl;
 	}
 	else
 	{
-		output << "Customer: " << customerID
-			<< "\n" << "Borrowed: " << title << endl;
+		cout << "Customer: " << customerID
+			<< "\n" << "Returned: " << title << endl;
 	}
-
-	return output;
 }

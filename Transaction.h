@@ -15,7 +15,7 @@ public:
 	int getCustomerID() const;
 
 	friend ostream& operator <<(ostream& output, Transaction& t);
-	virtual ostream& display(ostream& output);
+	virtual void display();
 
 protected: 
 	char type;
