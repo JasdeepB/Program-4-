@@ -16,6 +16,10 @@ Customer::Customer(int ID, string firstName, string lastName)
 
 Customer::~Customer()
 {
+	for (int i = 0; i < transactions.size(); i++) {
+		delete transactions[i];
+	}
+
 }
 
 int Customer::getCustomerID()
