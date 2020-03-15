@@ -1,3 +1,13 @@
+// ------------------------------------------------ Classic.cpp -------------------------------------------------------
+// Jasdeep Brar, Cameron Ufland CSS343 C
+// Creation Date: March 1, 2020
+// Date of Last Modification: March 14, 2020
+// --------------------------------------------------------------------------------------------------------------------
+// This is the implementation file for the classic class. This is a subclass of movie
+// --------------------------------------------------------------------------------------------------------------------
+//The requirements for this assignment were specified by Wooyoung Kim via class
+// and canvas.
+// --------------------------------------------------------------------------------------------------------------------
 #include "Classic.h"
 
 //Constructor
@@ -192,10 +202,9 @@ bool Classic::operator<(Classic& otherMovie) const
 
 // -------------------------------- <<operator ---------------------
 // Description
-//  operator <: compares two classic objects and returns true if the calling object
-//is greater
-// preconditions:two valid classic objects
-// postconditions: whether one movie object is greater than the other 
+//  operator >>: outputs the the classic object to an output stream
+// preconditions:valid output stream, valid classic object
+// postconditions: formatted strings in output stream
 // --------------------------------------------------------------------------
 ostream& operator<<(ostream& output, Classic& movie)
 {

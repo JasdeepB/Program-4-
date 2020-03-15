@@ -40,7 +40,7 @@ public:
 	//constructors and destructors
 	BST();
 	~BST();
-
+	//insert and retrieve functions
 	void insert(T& data);
 	bool retrieve(const string movieTitle, const int releaseYear, T*& holder); //Comedy Movies
 	bool retrieve(const string director, const string movieName, T*& holder); //Drama Movies
@@ -54,20 +54,24 @@ private:
 	Node<T>* root;
 	//helper methods
 	void insertHelper(T& value, Node<T>*& node);
-	bool retrieveHelper(const string director, const string movieName, T*& holder, Node<T>* node);
-	bool retrieveHelper(const string movieTitle, const int releaseYear, T*& holder, Node<T>* node);
-	bool retrieveHelper(const string maFname, const string maLname, const int releaseMonth, const int releaseYear, T*& holder, Node<T>* node);
+	bool retrieveHelper(const string director, const string movieName, T*& holder, Node<T>* node);//drama
+	bool retrieveHelper(const string movieTitle, const int releaseYear, T*& holder, Node<T>* node);//comedy
+	bool retrieveHelper(const string maFname, const string maLname, const int releaseMonth, const int releaseYear, T*& holder, Node<T>* node);//classic
 	bool retrieveSimilarClassicHelper(const string majorActorFirstName, const string majorActorLastName, const string title, const string director, const int releaseMonth, const int releaseYear, T*& holder, Node<T>* node);
 	void deleteTreeHelper(Node<T>* node);
 	void displayHelper(Node<T>* current, int level) const;
 };
+//end class "header" file
 
+//constructor
 template<class T>
 BST<T>::BST()
 {
 	root = nullptr;
 }
+//end constructor
 
+//destructor
 template<class T>
 BST<T>::~BST()
 {
@@ -76,13 +80,27 @@ BST<T>::~BST()
 		deleteTree();
 	}
 }
+//end destructor
 
+// -------------------------------- insert() --------------------------------
+// Description
+// insert:inserts a value into the BST
+// preconditions:valid object of class T
+// postconditions: the object is in the BST
+// -----------------------------------------------------------------------------
 template<class T>
 void BST<T>::insert(T& value)
 {
 	return insertHelper(value, root);
 }
+//end insert
 
+// -------------------------------- insertHelper() --------------------------------
+// Description
+// insertHelper:recursive helper method to a value into the BST
+// preconditions:valid object of class T
+// postconditions: the object is in the BST
+// -----------------------------------------------------------------------------
 template<class T>
 void BST<T>::insertHelper(T& value, Node<T>*& node)
 {
@@ -103,13 +121,30 @@ void BST<T>::insertHelper(T& value, Node<T>*& node)
 		insertHelper(value, node->right);
 	}
 }
+//insertHelper
 
+
+
+// -------------------------------- retrieve() --------------------------------
+// Description
+// retrieve (Drama): retrieves a specified object from the BST. It uses the sorting attributes
+//for each movie
+// preconditions:empty pointer to hold object
+// postconditions: pointer will hold object or will be nullptr
+// -----------------------------------------------------------------------------
 template<class T>
 bool BST<T>::retrieve(const string director, const string movieName, T*& holder)
 {
 	return retrieveHelper(director, movieName, holder, root);
 }
+//end retrieve(Drama)
 
+// -------------------------------- retrieveHelper() --------------------------------
+// Description
+// retrieveHelper(Drama): helper function for recursive search of BST
+// preconditions:valid object of class T
+// postconditions: the object is in the BST
+// -----------------------------------------------------------------------------
 template<class T>
 bool BST<T>::retrieveHelper(const string director, const string movieName, T*& holder, Node<T>* node)
 {
@@ -129,13 +164,28 @@ bool BST<T>::retrieveHelper(const string director, const string movieName, T*& h
 	}
 	return false;
 }
+//end retrieveHelper(Drama)
 
+// -------------------------------- retrieve() --------------------------------
+// Description
+// retrieve (Comedy): retrieves a specified object from the BST. It uses the sorting attributes
+//for each movie
+// preconditions:empty pointer to hold object
+// postconditions: pointer will hold object or will be nullptr
+// -----------------------------------------------------------------------------
 template<class T>
 bool BST<T>::retrieve(const string movieTitle, const int releaseYear, T*& holder)
 {
 	return retrieveHelper(movieTitle, releaseYear, holder, root);
 }
+//end retrieve(Comedy)
 
+// -------------------------------- retrieveHelper() --------------------------------
+// Description
+// retrieveHelper(Comedy): helper function for recursive search of BST
+// preconditions:valid object of class T
+// postconditions: the object is in the BST
+// -----------------------------------------------------------------------------
 template<class T>
 bool BST<T>::retrieveHelper(const string movieTitle, const int releaseYear, T*& holder, Node<T>* node)
 {
@@ -154,19 +204,43 @@ bool BST<T>::retrieveHelper(const string movieTitle, const int releaseYear, T*& 
 	}
 	return false;
 }
+//end retrieveHelper(Comedy)
 
+//// -------------------------------- retrieve() --------------------------------
+// Description
+// retrieve (Classic): retrieves a specified object from the BST. It uses the sorting attributes
+//for each movie
+// preconditions:empty pointer to hold object
+// postconditions: pointer will hold object or will be nullptr
+// -----------------------------------------------------------------------------
 template<class T>
 bool BST<T>::retrieve(const string maFname, const string maLname, const int releaseMonth, const int releaseYear, T*& holder)
 {
 	return retrieveHelper(maFname, maLname, releaseMonth, releaseYear, holder, root);
 }
+//end retrieve(Classic)
 
+
+//// -------------------------------- retrieveSimilarClassic() --------------------------------
+// Description
+// retrieveSimilarClassic: finds another classic object with same details but different Main Actor
+//for each movie
+// preconditions:empty pointer to hold object
+// postconditions: pointer will hold object or will be nullptr
+// -----------------------------------------------------------------------------
 template<class T>
 inline bool BST<T>::retrieveSimilarClassic(const string majorActorFirstName, const string majorActorLastName, const string title, const string director, const int releaseMonth, const int releaseYear, T*& holder)
 {
 	return retrieveSimilarClassicHelper(majorActorFirstName, majorActorLastName, title, director, releaseMonth, releaseYear, holder, this->root);
 }
+//end retrieveSimilarClassic()
 
+// -------------------------------- retrieveHelper() --------------------------------
+// Description
+// retrieveHelper(Classic): helper function for recursive search of BST
+// preconditions:valid object of class T
+// postconditions: the object is in the BST
+// -----------------------------------------------------------------------------
 template<class T>
 bool BST<T>::retrieveHelper(const string maFname, const string maLname, const int releaseMonth, const int releaseYear, T*& holder, Node<T>* node)
 {
@@ -185,7 +259,14 @@ bool BST<T>::retrieveHelper(const string maFname, const string maLname, const in
 	}
 	return false;
 }
+//end retrieveHelper(Classic)
 
+// -------------------------------- retrieveSimliarClassicHelper() --------------------------------
+// Description
+// retrieveSimliarClassicHelper: helper function for recursive search of BST
+// preconditions:valid object of class T
+// postconditions: the object is in the BST
+// -----------------------------------------------------------------------------
 template<class T>
 inline bool BST<T>::retrieveSimilarClassicHelper(const string majorActorFirstName, const string majorActorLastName, const string title, const string director, const int releaseMonth, const int releaseYear, T*& holder, Node<T>* node)
 {
@@ -211,7 +292,14 @@ inline bool BST<T>::retrieveSimilarClassicHelper(const string majorActorFirstNam
 	}
 	return false;
 }
+//end retrieveSimilarClassicHelper
 
+// -------------------------------- isEmpty() --------------------------------
+// Description
+// isEmpty: checks to see if the BST is empty
+// preconditions:valid BST
+// postconditions: the emptiness of the BST is assessed
+// -----------------------------------------------------------------------------
 template<class T>
 bool BST<T>::isEmpty() const
 {
@@ -224,7 +312,14 @@ bool BST<T>::isEmpty() const
 		return true;
 	}
 }
+//end isEmpty
 
+// -------------------------------- deleteTree() --------------------------------
+// Description
+// deleteTree: deletes the BST and erases all of its contents
+// preconditions:valid BST
+// postconditions:empty BST
+// -----------------------------------------------------------------------------
 template<class T>
 void BST<T>::deleteTree()
 {
@@ -237,7 +332,14 @@ void BST<T>::deleteTree()
 		deleteTreeHelper(root);
 	}
 }
+//end deleteTree
 
+// -------------------------------- deleteTreeHelper() --------------------------------
+// Description
+// deleteTreeHelper: recursive helper function that deletes the BST
+// preconditions:valid BST
+// postconditions: the empty BST
+// -----------------------------------------------------------------------------
 template<class T>
 void BST<T>::deleteTreeHelper(Node<T>* node)
 {
@@ -251,13 +353,27 @@ void BST<T>::deleteTreeHelper(Node<T>* node)
 	delete node;
 	node = nullptr;
 }
+//end deleteTreeHelper
 
+// -------------------------------- display() --------------------------------
+// Description
+// display: displays the contents of the BST in cout
+// preconditions:valid BST
+// postconditions: contents output to cout
+// -----------------------------------------------------------------------------
 template<class T>
 void BST<T>::display() const
 {
 	displayHelper(root, 0);
 }
+//end display
 
+//--------------------------------displayHelper()--------------------------------
+// Description
+// displayHelper:recursive functions that helps to display contents of tree
+// preconditions:valid BST
+// postconditions: contents output to cout
+// -----------------------------------------------------------------------------
 template<class T>
 void BST<T>::displayHelper(Node<T>* node, int level) const
 {
@@ -268,5 +384,7 @@ void BST<T>::displayHelper(Node<T>* node, int level) const
 		displayHelper(node->right, level);
 	}
 }
+//end DisplayHelper
+
 #endif
 
