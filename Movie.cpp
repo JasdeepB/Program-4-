@@ -62,7 +62,7 @@ bool Movie::Return()
 	}
 	else
 	{
-		cout << "This movie did not come from this store, so you can't return it" << endl;
+		cout << "\nThis movie did not come from this store, so you can't return it" << endl;
 		return false;
 	}
 }
@@ -76,7 +76,7 @@ bool Movie::Borrow()
 	}
 	else
 	{
-		cout << this->title + " by " + this->director + " is currently out of stock";
+		cout << "\n" << this->title + " by " + this->director + " is currently out of stock\n";
 		return false;
 	}
 }

@@ -17,9 +17,9 @@ class Return : public Transaction
 public:
 	//constructors and destructors
 	Return();
-	Return(const int customerID, char type, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName);//classic movie
-	Return(const int customerID, char type, const string title, int releaseYear);//funny movie
-	Return(const int customerID, char type, const string director, string title);//Drama movie
+	Return(const string t, const int customerID, char type, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName); //Classic movie
+	Return(const int customerID, char type, const string title, int releaseYear); //Funny movie
+	Return(const int customerID, char type, const string director, string title); //Drama movie
 	virtual void display();
 private:
 	string transactionType = "Return";

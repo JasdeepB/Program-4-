@@ -1,6 +1,6 @@
 #include "Classic.h"
 
-//constructor
+//Constructor
 Classic::Classic()
 {
 	this->type = 0;
@@ -13,7 +13,7 @@ Classic::Classic()
 	this->releaseYear = 0;
 }
 
-// full constructor
+// Full constructor
 Classic::Classic(const char type, int stock, const string director, const string title, const string majorActorFirstName, const string majorActorLastName, int releaseMonth, int releaseYear)
 {
 	this->type = type;
@@ -25,33 +25,53 @@ Classic::Classic(const char type, int stock, const string director, const string
 	this->releaseYear = releaseYear;
 	this->releaseMonth = releaseMonth;
 }
-//destructor
+//Destructor
 Classic::~Classic()
 {
 }
 // -------------------------------- getMajorActorFirstName() --------------------------------
 // Description
-// getMajorActorFirstName: function to output polynomial object
-// preconditions: output is the output stream the polynomial will be output to
-//                        P is the Polynomial to be output.
-// postconditions: The polynomial is output to the Ostream in the order of
-//                         highest power to lowest power
+// getMajorActorFirstName: returns a string containing actotrs first name
+// preconditions:valid classic object
+// postconditions: string containing first name
 // -----------------------------------------------------------------------------
 string Classic::getMajorActorFirstName() const
 {
 	return this->majorActorFirstName;
 }
+//end getMajorActorFirstName
 
+// -------------------------------- getMajorActorLasttName() ---------------------
+// Description
+// getMajorActorLastName: returns a string containing actotrs last name
+// preconditions:valid classic object
+// postconditions: string containing last name
+// -----------------------------------------------------------------------------
 string Classic::getMajorActorLastName() const
 {
 	return this->majorActorLastName;
 }
+//end getMajorActorLastName
 
+// -------------------------------- getReleaseMonth() ---------------------
+// Description
+// getReleaseMonth(): returns an int containing the release month
+// preconditions:valid classic object
+// postconditions: int containing release month
+// -----------------------------------------------------------------------------
 int Classic::getReleaseMonth() const
 {
 	return this->releaseMonth;
 }
+//end getReleaseMonth
 
+
+// -------------------------------- ==operator ---------------------
+// Description
+//  ==operator: compares two classic objects and returns true if they are equal
+// preconditions:two valid classic objects
+// postconditions: equality of two classic objects is assessed
+// -----------------------------------------------------------------------------
 bool Classic::operator==(Classic& otherMovie) const
 {
 	if (otherMovie.getReleaseMonth() == 0)
@@ -66,7 +86,14 @@ bool Classic::operator==(Classic& otherMovie) const
 			&& this->releaseYear == otherMovie.getReleaseYear());
 	}
 }
+//end == operator
 
+// -------------------------------- operator != ---------------------
+// Description
+// operator !=: compares two classic objects and returns false if they are equal
+// preconditions:two valid classic objects
+// postconditions: equality of two classic objects is assessed
+// -----------------------------------------------------------------------------
 bool Classic::operator!=(Classic& otherMovie) const
 {
 	if (otherMovie.getReleaseMonth() == 0)
@@ -78,7 +105,15 @@ bool Classic::operator!=(Classic& otherMovie) const
 		return !(*this == otherMovie);
 	}
 }
+//end operator!=
 
+// -------------------------------- >operator ---------------------
+// Description
+//  operator >: compares two classic objects and returns true if the calling object
+//is greater
+// preconditions:two valid classic objects
+// postconditions: whether one movie object is greater than the other 
+// -----------------------------------------------------------------------------
 bool Classic::operator>(Classic& otherMovie) const
 {
 	if (otherMovie.getReleaseMonth() == 0)
@@ -133,7 +168,15 @@ bool Classic::operator>(Classic& otherMovie) const
 		}
 	}
 }
+//end >operator
 
+// -------------------------------- <operator ---------------------
+// Description
+//  operator >: compares two classic objects and returns true if the calling object
+//is less than
+// preconditions:two valid classic objects
+// postconditions: whether one movie object is less than than the other 
+// --------------------------------------------------------------------------
 bool Classic::operator<(Classic& otherMovie) const
 {
 	if (otherMovie.getReleaseMonth() == 0)
@@ -145,7 +188,15 @@ bool Classic::operator<(Classic& otherMovie) const
 		return !(*this > otherMovie);
 	}
 }
+//end operator<
 
+// -------------------------------- <<operator ---------------------
+// Description
+//  operator <: compares two classic objects and returns true if the calling object
+//is greater
+// preconditions:two valid classic objects
+// postconditions: whether one movie object is greater than the other 
+// --------------------------------------------------------------------------
 ostream& operator<<(ostream& output, Classic& movie)
 {
 	output << "\nRelease date: " << movie.releaseMonth << " - " << movie.releaseYear

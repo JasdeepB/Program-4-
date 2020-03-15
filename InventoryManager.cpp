@@ -109,7 +109,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						commandsFile >> month >> year;
 						commandsFile >> majorActorF >> majorActorL;
-						t = new Borrow(id, genre, month, year, majorActorF, majorActorL);
+						t = new Borrow(id, genre, title, month, year, majorActorF, majorActorL);
 						Classic *c = nullptr;
 						//classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
 						//c->Borrow();
@@ -123,7 +123,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					}
 					else
 					{
-						cout << "Invalid Genre Type" << endl;
+						cout << "\nInvalid Genre Type" << endl;
 					}
 					Customer *cust = nullptr;
 					customerTable.retrieve(id, cust);
@@ -132,13 +132,13 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					}
 					else
 					{
-						cout << "Customer does not exist" << endl;
+						cout << "\nCustomer " << id <<" does not exist\n";
 					}
 				}
 			}
 			else 
 			{
-				cout << "invalid media type" << endl;
+				cout << "\ninvalid media type\n";
 			}
 		}
 		else if (trns == 'R')
@@ -158,7 +158,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 						//f->Return();
 						if (!funnyMoviesBST.retrieve(title, year, f))
 						{
-							cout << "Movie not in Inventory" << endl;
+							cout << "\nMovie not in Inventory\n";
 						}
 						else {
 							f->Return();
@@ -184,7 +184,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					{
 						commandsFile >> month >> year;
 						commandsFile >> majorActorF >> majorActorL;
-						t = new Return(id, genre, month, year, majorActorF, majorActorL);
+						t = new Return(title, id, genre, month, year, majorActorF, majorActorL);
 						Classic *c = nullptr;
 						//classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
 						//c->Return();
@@ -208,17 +208,17 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 					}
 					else 
 					{
-						cout << "Customer does not exist" << endl;
+						cout << "\nCustomer does not exist\n";
 					}
 				}
 				else
 				{
-					cout << "Invalid Genre Type" << endl;
+					cout << "\nInvalid Genre Type\n";
 				}
 			}
 			else
 			{
-				cout << "Invalid media type" << endl;
+				cout << "\nInvalid media type\n";
 			}
 		}
 		else if (trns == 'H')
@@ -233,7 +233,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 			}
 			else
 			{
-				cout << "Customer does not exist" << endl;
+				cout << "\nCustomer does not exist\n";
 			}
 		}
 		else if (trns == 'I')
@@ -244,7 +244,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 		{
 			string s;
 			getline(commandsFile, s);
-			cout << trns << " is an invalid command." << endl;
+			cout << "\n" << trns << " is an invalid command." << endl;
 		}
 	}
 
@@ -329,7 +329,7 @@ bool InventoryManager::buildMovies(ifstream& moviesData)
 // -----------------------------------------------------------------------------
 void InventoryManager::showAllInventory()
 {
-	cout << "\n===================== CURRENT INVENTORY =====================\n\n";
+	cout << "\n=====================  All INVENTORY =======================\n\n";
 	cout << "===================== All Comedy Movies =====================\n";
 	funnyMoviesBST.display();
 	cout << "=====================  All Drama Movies  ====================\n";

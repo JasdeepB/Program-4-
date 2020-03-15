@@ -22,10 +22,10 @@ Borrow::Borrow()
 	this->customerID = 0;
 }
 //Classic
-Borrow::Borrow(const int customerID, const char type, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName)
+Borrow::Borrow(const int customerID, const char type, const string title, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName)
 {
 	this->type = type;
-	this->title = "";
+	this->title = title;
 	this->director = "";
 	this->majorActorFirstName = majorActorFirstName;
 	this->majorActorLastName = majorActorLastName;
@@ -69,13 +69,13 @@ void Borrow::display()
 {
 	if (type == 'C')
 	{
-		cout << "Customer: " << customerID
-			<< "\n" << "Borrowed: " << releaseMonth<< " "<< releaseYear<< " " << majorActorFirstName << " " << majorActorLastName << endl;
+		cout << "\nCustomer: " << customerID
+			<< "\n" << "Borrowed: " << title << " " << releaseMonth<< " " << releaseYear<< " " << majorActorFirstName << " " << majorActorLastName << "\n\n";
 	}
 	else
 	{
-		cout << "Customer: " << customerID
-			<< "\n" << "Borrowed: " << title << endl;
+		cout << "\nCustomer: " << customerID
+			<< "\n" << "Borrowed: " << title << "\n\n";
 	}
 	
 }

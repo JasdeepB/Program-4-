@@ -12,10 +12,10 @@ Return::Return()
 	this->customerID = 0;
 }
 
-Return::Return(const int customerID, char type, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName)
+Return::Return(const string t, const int customerID, char type, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName)
 {
 	this->type = type;
-	this->title = "";
+	this->title = t;
 	this->director = "";
 	this->majorActorFirstName = majorActorFirstName;
 	this->majorActorLastName = majorActorLastName;
