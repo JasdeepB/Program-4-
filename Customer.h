@@ -12,7 +12,7 @@
 #define Customer_h
 #include <iostream>
 #include <string>
-#include <vector>
+#include <vector> // holds transactions
 #include "Transaction.h"
 #include "Return.h"
 #include "Borrow.h"
@@ -22,6 +22,7 @@ using namespace std;
 class Customer
 {
 public:
+	//constructors and destructors
 	Customer();
 	Customer(int ID, string firstName, string lastName);
 	~Customer();

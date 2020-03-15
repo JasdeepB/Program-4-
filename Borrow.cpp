@@ -1,5 +1,15 @@
+// ------------------------------------------------ Borrow.cpp -------------------------------------------------------
+// Jasdeep Brar, Cameron Ufland CSS343 C
+// Creation Date: March 1, 2020
+// Date of Last Modification: March 14, 2020
+// --------------------------------------------------------------------------------------------------------------------
+// This is the implementation file for the borrow class. This is a subclass of transaction
+// --------------------------------------------------------------------------------------------------------------------
+//The requirements for this assignment were specified by Wooyoung Kim via class
+// and canvas.
+// --------------------------------------------------------------------------------------------------------------------
 #include "Borrow.h"
-
+//constructors
 Borrow::Borrow()
 {
 	this->type = 0;
@@ -11,7 +21,7 @@ Borrow::Borrow()
 	this->releaseYear = 0;
 	this->customerID = 0;
 }
-
+//Classic
 Borrow::Borrow(const int customerID, const char type, const int releaseMonth, const int releaseYear, const string majorActorFirstName, const string majorActorLastName)
 {
 	this->type = type;
@@ -23,7 +33,7 @@ Borrow::Borrow(const int customerID, const char type, const int releaseMonth, co
 	this->releaseYear = releaseYear;
 	this->customerID = customerID;
 }
-
+//Funny
 Borrow::Borrow(const int customerID, char type, const string title, int releaseYear)
 {
 	this->type = type;
@@ -35,7 +45,7 @@ Borrow::Borrow(const int customerID, char type, const string title, int releaseY
 	this->releaseYear = releaseYear;
 	this->customerID = customerID;
 }
-
+//Drama
 Borrow::Borrow(const int customerID, char type, const string director, string title)
 {
 	this->type = type;
@@ -47,9 +57,14 @@ Borrow::Borrow(const int customerID, char type, const string director, string ti
 	this->releaseYear = 0;
 	this->customerID = customerID;
 }
+//end constructors
 
-
-
+// -------------------------------- display --------------------------------
+// Description
+// display: prints out the transaction
+// preconditions: none
+// postconditions: none
+// -----------------------------------------------------------------------------
 void Borrow::display() 
 {
 	if (type == 'C')
@@ -64,3 +79,4 @@ void Borrow::display()
 	}
 	
 }
+//end display

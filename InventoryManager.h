@@ -1,3 +1,13 @@
+// ------------------------------------------------ inventoryManager.h -------------------------------------------------------
+// Jasdeep Brar, Cameron Ufland CSS343 C
+// Creation Date: March 1, 2020
+// Date of Last Modification: March 14, 2020
+// --------------------------------------------------------------------------------------------------------------------
+// This is the header file for the Inventory manager class.
+// --------------------------------------------------------------------------------------------------------------------
+//The requirements for this assignment were specified by Wooyoung Kim via class
+// and canvas.
+// --------------------------------------------------------------------------------------------------------------------
 #ifndef InventoryManager_h
 #define InventoryManager_h
 #include <iostream>

@@ -1,5 +1,6 @@
 #include "Classic.h"
 
+//constructor
 Classic::Classic()
 {
 	this->type = 0;
@@ -12,6 +13,7 @@ Classic::Classic()
 	this->releaseYear = 0;
 }
 
+// full constructor
 Classic::Classic(const char type, int stock, const string director, const string title, const string majorActorFirstName, const string majorActorLastName, int releaseMonth, int releaseYear)
 {
 	this->type = type;
@@ -23,11 +25,18 @@ Classic::Classic(const char type, int stock, const string director, const string
 	this->releaseYear = releaseYear;
 	this->releaseMonth = releaseMonth;
 }
-
+//destructor
 Classic::~Classic()
 {
 }
-
+// -------------------------------- getMajorActorFirstName() --------------------------------
+// Description
+// getMajorActorFirstName: function to output polynomial object
+// preconditions: output is the output stream the polynomial will be output to
+//                        P is the Polynomial to be output.
+// postconditions: The polynomial is output to the Ostream in the order of
+//                         highest power to lowest power
+// -----------------------------------------------------------------------------
 string Classic::getMajorActorFirstName() const
 {
 	return this->majorActorFirstName;

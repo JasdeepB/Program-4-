@@ -1,3 +1,13 @@
+// ------------------------------------------------ BST.h -------------------------------------------------------
+// Jasdeep Brar, Cameron Ufland CSS343 C
+// Creation Date: March 1, 2020
+// Date of Last Modification: March 14, 2020
+// --------------------------------------------------------------------------------------------------------------------
+// This is the header and implementation for our Binary Search Tree.
+// --------------------------------------------------------------------------------------------------------------------
+//The requirements for this assignment were specified by Wooyoung Kim via class
+// and canvas.
+// --------------------------------------------------------------------------------------------------------------------
 #ifndef  BST_HEADER
 #define BST_HEADER
 #include<iostream>
@@ -7,6 +17,8 @@
 using namespace std;
 
 template<class T>
+
+
 struct Node
 {
 	Node(T d = nullptr, Node* r = nullptr, Node* l = nullptr)
@@ -25,6 +37,7 @@ template<class T>
 class BST
 {
 public:
+	//constructors and destructors
 	BST();
 	~BST();
 
@@ -39,6 +52,7 @@ public:
 
 private:
 	Node<T>* root;
+	//helper methods
 	void insertHelper(T& value, Node<T>*& node);
 	bool retrieveHelper(const string director, const string movieName, T*& holder, Node<T>* node);
 	bool retrieveHelper(const string movieTitle, const int releaseYear, T*& holder, Node<T>* node);
