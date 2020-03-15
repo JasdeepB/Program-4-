@@ -1,5 +1,17 @@
+// ------------------------------------------------ Funny.cpp -------------------------------------------------------
+// Jasdeep Brar, Cameron Ufland CSS343 C
+// Creation Date: March 1, 2020
+// Date of Last Modification: March 14, 2020
+// --------------------------------------------------------------------------------------------------------------------
+// This is the implementation file for the Funny class, a derived class from Movie
+// --------------------------------------------------------------------------------------------------------------------
+//The requirements for this assignment were specified by Wooyoung Kim via class
+// and canvas.
+// --------------------------------------------------------------------------------------------------------------------
+
 #include "Funny.h"
 
+//Default Constructor
 Funny::Funny()
 {
 	this->type = 0;
@@ -9,6 +21,7 @@ Funny::Funny()
 	this->stock = 0;
 }
 
+//Overloaded Constructor
 Funny::Funny(const char type, int stock, const string director, const string title, int releaseYear)
 {
 	this->type = type;
@@ -18,10 +31,17 @@ Funny::Funny(const char type, int stock, const string director, const string tit
 	this->releaseYear = releaseYear;
 }
 
+//Destructor
 Funny::~Funny()
 {
 }
 
+// -------------------------------- operator == --------------------------------
+// Description
+// operator ==: Checks for equality
+// preconditions: Funny object
+// postconditions: booleon return
+// -----------------------------------------------------------------------------
 bool Funny::operator==(Funny& otherMovie) const
 {
 	if (otherMovie.getTitle() == "")
@@ -40,7 +60,14 @@ bool Funny::operator==(Funny& otherMovie) const
 		}
 	}
 }
+//end of operator ==
 
+// -------------------------------- operator != --------------------------------
+// Description
+// operator !=: Checks for inequality
+// preconditions: Funny object
+// postconditions: booleon return
+// -----------------------------------------------------------------------------
 bool Funny::operator!=(Funny& otherMovie) const
 {
 	if (otherMovie.getTitle() == "")
@@ -52,7 +79,14 @@ bool Funny::operator!=(Funny& otherMovie) const
 		return !(*this == otherMovie);
 	}
 }
+// end of operator !=
 
+// -------------------------------- operator > --------------------------------
+// Description
+// operator >: Check for greater precedence
+// preconditions: Funny object
+// postconditions: booleon return type
+// -----------------------------------------------------------------------------
 bool Funny::operator>(Funny& otherMovie) const
 {
 	if (otherMovie.getTitle() == "")
@@ -86,7 +120,14 @@ bool Funny::operator>(Funny& otherMovie) const
 	}
 	return false;
 }
+// end of operator >
 
+// -------------------------------- operator < --------------------------------
+// Description
+// operator <: Check for lesser precedence
+// preconditions: Funny object
+// postconditions: booleon return type
+// -----------------------------------------------------------------------------
 bool Funny::operator<(Funny& otherMovie) const
 {
 	if (otherMovie.getTitle() == "")
@@ -98,7 +139,14 @@ bool Funny::operator<(Funny& otherMovie) const
 		return !(*this > otherMovie);
 	}
 }
+// end of operator <
 
+// -------------------------------- operator << --------------------------------
+// Description
+// operator <<: Prints the funny movie contents to the console
+// preconditions: Funny object, and ostream object
+// postconditions: ostream returned
+// -----------------------------------------------------------------------------
 ostream& operator<<(ostream& output, Funny& movie)
 {
 	output << "Title: " << movie.title << " Release Year: " << movie.releaseYear
@@ -107,3 +155,4 @@ ostream& operator<<(ostream& output, Funny& movie)
 
 	return output;
 }
+// end of operator <<
