@@ -68,100 +68,157 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 
 		if (trns == 'B') 
 		{
-			commandsFile >> id >> dvd >> genre;
-
-			if (genre == 'F' || genre == 'D' || genre == 'C') 
+			commandsFile >> id >> dvd;
+			if (dvd == 'D') 
 			{
-				if (genre == 'F') {
-					getline(commandsFile, title, ',');
-					commandsFile >> year;
-					t = Borrow(id, genre, title, year);
-					Funny *f = nullptr;
-					funnyMoviesBST.retrieve(title, year, f);
-					f->Borrow();
-				}
-				else if (genre == 'D')
+				commandsFile >> genre;
+				if (genre == 'F' || genre == 'D' || genre == 'C')
 				{
-					getline(commandsFile, director, ',');
-					getline(commandsFile, title, ',');
-					t = Borrow(id, genre, director, title);
-					Drama *d = nullptr;
-					dramaMoviesBST.retrieve(director, title, d);
-					d->Borrow();
-				}
-				else if (genre == 'C')
-				{
-					commandsFile >> month >> year;
-					commandsFile >> majorActorF >> majorActorL;
-					t = Borrow(id, genre, month, year, majorActorF, majorActorL);
-					Classic *c = nullptr;
-					classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
-					c->Borrow();
+					if (genre == 'F') 
+					{
+						getline(commandsFile, title, ',');
+						commandsFile >> year;
+						t = Borrow(id, genre, title, year);
+						Funny *f = nullptr;
+						if (!funnyMoviesBST.retrieve(title, year, f)) 
+						{
+							cout << "Movie not in Inventory" << endl;
+						}
+						else
+						{
+							f->Borrow();
+						}
+					}
+					else if (genre == 'D')
+					{
+						getline(commandsFile, director, ',');
+						getline(commandsFile, title, ',');
+						t = Borrow(id, genre, director, title);
+						Drama *d = nullptr;
+						//dramaMoviesBST.retrieve(director, title, d);
+						if (!dramaMoviesBST.retrieve(director, title, d)) 
+						{
+							cout << "Movie not in Inventory" << endl;
+						}
+						else
+						{
+							d->Borrow();
+						}
+					}
+					else if (genre == 'C')
+					{
+						commandsFile >> month >> year;
+						commandsFile >> majorActorF >> majorActorL;
+						t = Borrow(id, genre, month, year, majorActorF, majorActorL);
+						Classic *c = nullptr;
+						//classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
+						//c->Borrow();
+						if (!classicMoviesBST.retrieve(director, title, c)) {
+							cout << "Movie not in Inventory" << endl;
+						}
+						else {
+							c->Borrow();
+						}
 
+					}
+					else
+					{
+						cout << "Invalid Genre Type" << endl;
+					}
+					Customer *cust = nullptr;
+					customerTable.retrieve(id, cust);
+					if (cust != nullptr) {
+						cust->addTransaction(t);
+					}
+					else
+					{
+						cout << "Customer does not exist" << endl;
+					}
+				}
+			}
+			else 
+			{
+				cout << "invalid media type" << endl;
+			}
+		}
+		else if (trns == 'R')
+		{
+			commandsFile >> id >> dvd >> genre;
+			if (dvd == 'D') {
+				commandsFile >> genre;
+				if (genre == 'F' || genre == 'D' || genre == 'C')
+				{
+					if (genre == 'F')
+					{
+						getline(commandsFile, title, ',');
+						commandsFile >> year;
+						t = Return(id, genre, title, year);
+						Funny *f = nullptr;
+						//funnyMoviesBST.retrieve(title, year, f);
+						//f->Return();
+						if (!funnyMoviesBST.retrieve(title, year, f))
+						{
+							cout << "Movie not in Inventory" << endl;
+						}
+						else {
+							f->Return();
+						}
+					}
+					else if (genre == 'D')
+					{
+						getline(commandsFile, director, ',');
+						getline(commandsFile, title, ',');
+						t = Return(id, genre, director, title);
+						Drama *d = nullptr;
+						//dramaMoviesBST.retrieve(director, title, d);
+						//d->Return();
+						if (!dramaMoviesBST.retrieve(director, title, d)) {
+							cout << "Movie not in Inventory" << endl;
+						}
+						else {
+							d->Return();
+						}
+
+					}
+					else if (genre == 'C')
+					{
+						commandsFile >> month >> year;
+						commandsFile >> majorActorF >> majorActorL;
+						t = Return(id, genre, month, year, majorActorF, majorActorL);
+						Classic *c = nullptr;
+						//classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
+						//c->Return();
+						if (!classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c)) 
+						{
+							cout << "Movie not in Inventory" << endl;
+						}
+						else 
+						{
+							c->Return();
+						}
+
+					}
+
+					Customer *cust = nullptr;
+					customerTable.retrieve(id, cust);
+
+					if (cust != nullptr) 
+					{
+						cust->addTransaction(t);
+					}
+					else 
+					{
+						cout << "Customer does not exist" << endl;
+					}
 				}
 				else
 				{
 					cout << "Invalid Genre Type" << endl;
 				}
-				Customer *cust = nullptr;
-				customerTable.retrieve(id, cust);
-				if (cust != nullptr) {
-					cust->addTransaction(t);
-				}
-				else
-				{
-					cout << "Customer does not exist" << endl;
-				}
-			}
-		}
-		else if(trns == 'R') 
-		{
-			commandsFile >> id >> dvd >> genre;
-
-			if (genre == 'F' || genre == 'D' || genre == 'C')
-			{
-				if (genre == 'F')
-				{
-					getline(commandsFile, title, ',');
-					commandsFile >> year;
-					t = Return(id, genre, title, year);
-					Funny *f = nullptr;
-					funnyMoviesBST.retrieve(title, year, f);
-					f->Return();
-				}
-				else if (genre == 'D')
-				{
-					getline(commandsFile, director, ',');
-					getline(commandsFile, title, ',');
-					t = Return(id, genre, director, title);
-					Drama *d = nullptr;
-					dramaMoviesBST.retrieve(director, title, d);
-					d->Return();
-				}
-				else if (genre == 'C') 
-				{
-					commandsFile >> month >> year;
-					commandsFile >> majorActorF >> majorActorL;
-					t = Return(id, genre, month, year, majorActorF, majorActorL);
-					Classic *c = nullptr;
-					classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
-					c->Return();
-
-				}
-
-				Customer *cust = nullptr;
-				customerTable.retrieve(id, cust);
-
-				if (cust != nullptr) {
-					cust->addTransaction(t);
-				}
-				else {
-					cout << "Customer does not exist" << endl;
-				}
 			}
 			else
 			{
-				cout << "Invalid Genre Type" << endl;
+				cout << "Invalid media type" << endl;
 			}
 		}
 		else if (trns == 'H')

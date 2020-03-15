@@ -16,6 +16,5 @@ int main()
 	im.processTransaction(commands);
 	im.showAllInventory();
 
-	cout << "does the following customer exist in the file?";
 
 }

@@ -51,7 +51,7 @@ bool HashTable::retrieve(int key, Customer *&holder)
 			holder = &current->data;
 			return true;
 		}
-		current = current->next;
+																current = current->next;
 	}
 	return false;
 }
