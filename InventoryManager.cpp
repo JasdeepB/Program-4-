@@ -113,7 +113,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 						Classic *c = nullptr;
 						//classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c);
 						//c->Borrow();
-						if (!classicMoviesBST.retrieve(director, title, c)) {
+						if (!classicMoviesBST.retrieve(majorActorF, majorActorL, month, year, c)) {
 							cout << "Movie not in Inventory" << endl;
 						}
 						else {
@@ -143,7 +143,7 @@ bool InventoryManager::processTransaction(ifstream& commandsFile)
 		}
 		else if (trns == 'R')
 		{
-			commandsFile >> id >> dvd >> genre;
+			commandsFile >> id >> dvd;
 			if (dvd == 'D') {
 				commandsFile >> genre;
 				if (genre == 'F' || genre == 'D' || genre == 'C')

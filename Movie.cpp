@@ -83,7 +83,7 @@ bool Movie::Borrow()
 
 void Movie::addToStock(int amount)
 {
-	this->stock += amount;
+	//this->stock += amount;
 }
 
 bool Movie::operator==(Movie& otherMovie) const
